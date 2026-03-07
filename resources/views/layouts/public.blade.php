@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>SANA </title>
+    <title>SANA - Skills Academy for Needy Aspirants</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -13,58 +13,57 @@
     <!-- Top Navbar -->
     <header class="bg-white shadow">
 
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="w-full h-35 mx-auto px-6">
 
-            <div class="flex items-center justify-between h-16">
+            <div class="flex items-center justify-between gap-10 h-[120px] ">
 
                 {{-- LOGO --}}
                 <a href="https://sanaartisan.com/" class="flex items-center">
-                    <img src="{{ asset('images/sana-logo.jpeg') }}" class="h-10 w-auto">
+                    <img src="{{ asset('images/sana-logo.png') }}" class="h-[100px] w-[auto] mb-2">
                 </a>
 
 
                 {{-- DESKTOP MENU --}}
-                <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                <nav class="hidden lg:flex items-center gap-6 text-xs font-medium">
 
-                    <a href="/" class="text-gray-700 hover:text-black">Home</a>
+                    <a href="https://sanaartisan.com" class="text-gray-700 hover:text-black">Home</a>
 
-                    <a href="#" class="text-gray-700 hover:text-black">
+                    <a href="https://sanaartisan.com/about/" class="text-gray-700 hover:text-black">
                         About Us
                     </a>
 
-                    <a href="#" class="text-gray-700 hover:text-black">
+                    <a href="https://sanaartisan.com/programs/" class="text-gray-700 hover:text-black">
                         Programs
                     </a>
 
-                    <a href="/apply" class="text-gray-700 hover:text-black">
+                    <a href="https://sanaartisan.com/apply-for-training/" class="text-gray-700 hover:text-black">
                         Apply for training
                     </a>
 
-                    <a href="#" class="text-gray-700 hover:text-black">
+                    <a href="https://sanaartisan.com/workshops/" class="text-gray-700 hover:text-black">
                         Workshops
                     </a>
 
-                    <a href="#" class="text-gray-700 hover:text-black">
+                    <a href="https://sanaartisan.com/events/" class="text-gray-700 hover:text-black">
                         Events
                     </a>
 
-                    <a href="/artisans"
-                        class="px-3 py-1 border border-gray-800 text-gray-800 rounded hover:bg-gray-100">
+                    <a href="https://jobs.sanaartisan.com/artisans" class="  text-gray-800 rounded hover:bg-gray-100">
                         Artisans
                     </a>
 
-                    <a href="#" class="text-gray-700 hover:text-black">
+                    <a href="https://sanaartisan.com/products/" class="text-gray-700 hover:text-black">
                         Products
                     </a>
 
-                    <a href="#" class="text-gray-700 hover:text-black">
+                    <a href="https://sanaartisan.com/contact/" class="text-gray-700 hover:text-black">
                         Contact
                     </a>
 
                     {{-- CART --}}
-                    <button class="text-xl">
+                    <a href="https://sanaartisan.com/cart/" class="text-xl">
                         🛒
-                    </button>
+                    </a>
 
                 </nav>
 
@@ -73,9 +72,9 @@
                 <div class="flex items-center gap-4 lg:hidden">
 
                     {{-- CART --}}
-                    <button class="text-xl">
+                    <a href="https://sanaartisan.com/cart/" class="text-xl">
                         🛒
-                    </button>
+                    </a>
 
                     {{-- MENU BUTTON --}}
                     <button id="menuBtn" class="text-2xl">
@@ -92,29 +91,34 @@
         {{-- MOBILE MENU --}}
         <div id="mobileMenu" class="hidden lg:hidden bg-white border-t">
 
-            <div class="px-10 py-6 space-y-3 text-md  ">
+            <div class="px-10 py-6 space-y-3 text-md ">
 
-                <a href="/" class="block text-slate-700 hover:text-yellow-300">Home</a>
+                <a href="https://sanaartisan.com" class="block text-slate-700 hover:text-yellow-300">Home</a>
 
-                <a href="#" class="block text-slate-700 hover:text-yellow-300">About Us</a>
+                <a href="https://sanaartisan.com/about/" class="block text-slate-700 hover:text-yellow-300">About Us</a>
 
-                <a href="#" class="block hover:text-black">Programs</a>
+                <a href="https://sanaartisan.com/programs/" class="block hover:text-black">Programs</a>
 
-                <a href="/apply" class="block text-slate-700 hover:text-yellow-300">
+                <a href="https://sanaartisan.com/apply-for-training/"
+                    class="block text-slate-700 hover:text-yellow-300">
                     Apply for training
                 </a>
 
-                <a href="#" class="block text-slate-700 hover:text-yellow-300">Workshops</a>
+                <a href="https://sanaartisan.com/workshops/"
+                    class="block text-slate-700 hover:text-yellow-300">Workshops</a>
 
-                <a href="#" class="block text-slate-700 hover:text-yellow-300">Events</a>
+                <a href="https://sanaartisan.com/events/" class="block text-slate-700 hover:text-yellow-300">Events</a>
 
-                <a href="/artisans" class="block font-semibold text-slate-700 hover:text-yellow-300">
+                <a href="https://jobs.sanaartisan.com/artisans"
+                    class="block font-semibold text-slate-700 hover:text-yellow-300">
                     Artisans
                 </a>
 
-                <a href="#" class="block text-slate-700 hover:text-yellow-300">Products</a>
+                <a href="https://sanaartisan.com/products/"
+                    class="block text-slate-700 hover:text-yellow-300">Products</a>
 
-                <a href="#" class="block text-slate-700 hover:text-yellow-300">Contact</a>
+                <a href="https://sanaartisan.com/contact/"
+                    class="block text-slate-700 hover:text-yellow-300">Contact</a>
 
             </div>
 

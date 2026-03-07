@@ -4,7 +4,9 @@
 
         {{-- LOGO --}}
         <div class="flex justify-center md:justify-start">
-            <img src="{{ asset('images/sana-logo.jpeg') }}" alt="SANA Logo" class="h-20 object-contain">
+            <a href="https://sanaartisan.com/" class="flex items-center">
+                <img src="{{ asset('images/sana-logo.png') }}" class="h-[150px] w-[auto] mb-2">
+            </a>
         </div>
 
 
