@@ -85,9 +85,16 @@ class FrontendController extends Controller
         $artists = $query->latest()->paginate(9)->withQueryString();
 
         $categories = Artist::where('approval_status', 'approved')
-            ->select('specialization')
-            ->distinct()
-            ->pluck('specialization');
+            ->pluck('specialization')
+            ->flatMap(function ($item) {
+                return explode(',', $item);
+            })
+            ->map(function ($item) {
+                return trim($item);
+            })
+            ->unique()
+            ->sort()
+            ->values();
 
         return view('frontend.publicartists', compact('artists', 'categories'));
     }
