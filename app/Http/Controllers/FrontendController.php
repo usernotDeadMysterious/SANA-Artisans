@@ -16,7 +16,7 @@ class FrontendController extends Controller
     {
         $artists = Artist::where('approval_status', 'approved')
             ->latest()
-            ->paginate(9);
+            ->paginate(12);
 
         return view('frontend.artists', compact('artists'));
     }
@@ -82,7 +82,7 @@ class FrontendController extends Controller
             $query->where('specialization', 'like', '%' . $request->category . '%');
         }
 
-        $artists = $query->latest()->paginate(9)->withQueryString();
+        $artists = $query->latest()->paginate(12)->withQueryString();
 
         $categories = Artist::where('approval_status', 'approved')
             ->pluck('specialization')
