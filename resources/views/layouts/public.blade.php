@@ -17,7 +17,7 @@
 
         <div class="w-full h-35 mx-auto px-6">
 
-            <div class="flex items-center justify-between gap-10 h-[120px] ">
+            <div class="flex items-center justify-between h-[140px] ">
 
                 {{-- LOGO --}}
                 <a href="https://sanaartisan.com/" class="flex items-center">
@@ -26,7 +26,7 @@
 
 
                 {{-- DESKTOP MENU --}}
-                <nav class="hidden lg:flex items-center gap-6 text-xs font-medium">
+                <nav class="hidden lg:flex items-center gap-10 text-md font-normal  ">
 
                     <a href="https://sanaartisan.com" class="text-gray-700 hover:text-black">Home</a>
 
@@ -34,12 +34,18 @@
                         About Us
                     </a>
 
+                    <a href="https://sanaartisan.com/team/" class="text-gray-700 hover:text-black">
+                        Team
+                    </a>
+
+
+
                     <a href="https://sanaartisan.com/programs/" class="text-gray-700 hover:text-black">
                         Programs
                     </a>
 
                     <a href="https://sanaartisan.com/apply-for-training/" class="text-gray-700 hover:text-black">
-                        Apply for training
+                        Training
                     </a>
 
                     <a href="https://sanaartisan.com/workshops/" class="text-gray-700 hover:text-black">
@@ -64,18 +70,18 @@
 
                     {{-- CART --}}
                     <a href="https://sanaartisan.com/cart/" class="text-xl">
-                        🛒
+                        <img src="{{ asset('images/cart.svg') }}" alt="" class="w-6 h-6">
                     </a>
 
                 </nav>
 
 
                 {{-- MOBILE ICONS --}}
-                <div class="flex items-center gap-4 lg:hidden">
+                <div class="flex items-center gap-8 lg:hidden">
 
                     {{-- CART --}}
                     <a href="https://sanaartisan.com/cart/" class="text-xl">
-                        🛒
+                        <img src="{{ asset('images/cart.svg') }}" alt="" class="w-6 h-6">
                     </a>
 
                     {{-- MENU BUTTON --}}
@@ -93,9 +99,9 @@
         {{-- MOBILE MENU --}}
         <div id="mobileMenu" class="hidden lg:hidden bg-white border-t">
 
-            <div class="px-10 py-6 space-y-3 text-md ">
+            <div class="px-10 py-6 space-y-6 text-md font-medium ">
 
-                <a href="https://sanaartisan.com" class="block text-slate-700 hover:text-yellow-300">Home</a>
+                <a href="https://sanaartisan.com" class="block text-slate-700 hover:text-yellow-300 ">Home</a>
 
                 <a href="https://sanaartisan.com/about/" class="block text-slate-700 hover:text-yellow-300">About Us</a>
 
@@ -103,7 +109,7 @@
 
                 <a href="https://sanaartisan.com/apply-for-training/"
                     class="block text-slate-700 hover:text-yellow-300">
-                    Apply for training
+                    Training
                 </a>
 
                 <a href="https://sanaartisan.com/workshops/"
@@ -112,7 +118,7 @@
                 <a href="https://sanaartisan.com/events/" class="block text-slate-700 hover:text-yellow-300">Events</a>
 
                 <a href="https://jobs.sanaartisan.com/artisans"
-                    class="block font-semibold text-slate-700 hover:text-yellow-300">
+                    class="block font-semibold text-slate-700 hover:text-yellow-300 border p-2  rounded-md shadow-sm">
                     Artisans
                 </a>
 
