@@ -69,15 +69,15 @@
 
 
         {{-- ARTISANS GRID --}}
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-6">
 
             @foreach($artists as $artist)
 
                 <div
-                    class="bg-white shadow-md hover:shadow-xl transition rounded-xl overflow-hidden p-5 flex flex-col justify-between h-full">
+                    class="bg-white shadow-md hover:shadow-xl transition rounded-xl overflow-hidden p-4 xs:p-2 flex flex-col justify-between h-full">
 
                     {{-- TOP CONTENT --}}
-                    <div>
+                    <div class="">
 
 
                         {{-- IMAGE --}}
@@ -89,8 +89,7 @@
                                     : asset('images/placeholder.jpg');
                             @endphp
 
-                            <img src="{{ $image }}"
-                                class="w-48 h-48 rounded-full object-cover border-2 border-gray-200 shadow-sm">
+                            <img src="{{ $image }}" class="w-50 h-50 rounded-full object-cover  ">
 
                         </div>
 
