@@ -24,16 +24,10 @@
                     {{ $artist->name }}
                 </h2>
 
-                {{-- SPECIALIZATION TAGS --}}
+                {{-- Trade --}}
                 <div class="flex flex-wrap justify-center gap-2 mt-4">
 
-                    @foreach(explode(',', $artist->specialization) as $skill)
-
-                        <span class="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">
-                            {{ trim($skill) }}
-                        </span>
-
-                    @endforeach
+                    Trade
 
                 </div>
 
@@ -103,7 +97,7 @@
 
 
                     {{-- Current Status --}}
-                    <div class="bg-gray-50 rounded-lg p-4">
+                    {{-- <div class="bg-gray-50 rounded-lg p-4">
                         <p class="text-gray-400 text-xs uppercase tracking-wide">
                             Current Status
                         </p>
@@ -111,21 +105,23 @@
                         <p class="text-gray-800 text-lg font-semibold mt-1 capitalize">
                             {{ str_replace('_', ' ', $artist->current_status) }}
                         </p>
-                    </div>
+                    </div> --}}
 
 
-                    {{-- Address --}}
+
+                    {{-- Skills --}}
                     <div class="bg-gray-50 rounded-lg p-4">
                         <p class="text-gray-400 text-xs uppercase tracking-wide">
-                            Address
+                            Skills
                         </p>
+                        @foreach(explode(',', $artist->specialization) as $skill)
 
-                        <p class="text-gray-800 text-lg font-semibold mt-1">
-                            {{ $artist->address }}
-                        </p>
+                            <ul class="text-black text-xs  py-1 rounded-full  ">
+                                {{ trim($skill) }}
+                            </ul>
+
+                        @endforeach
                     </div>
-
-
                     {{-- Certifications --}}
                     <div class="bg-gray-50 rounded-lg p-4">
 
@@ -151,11 +147,33 @@
 
                     </div>
 
+                    {{-- District --}}
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="text-gray-400 text-xs uppercase tracking-wide">
+                            District
+                        </p>
+
+                        <p class="text-gray-800 text-lg font-semibold mt-1">
+                            {{ $artist->address }}
+                        </p>
+                    </div>
+
+                    {{-- Address --}}
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="text-gray-400 text-xs uppercase tracking-wide">
+                            Address
+                        </p>
+
+                        <p class="text-gray-800 text-lg font-semibold mt-1">
+                            {{ $artist->address }}
+                        </p>
+                    </div>
+
                 </div>
 
 
                 {{-- EXPERIENCE --}}
-                <div class="mt-8 bg-gray-50 rounded-lg p-6">
+                {{-- <div class="mt-8 bg-gray-50 rounded-lg p-6">
 
                     <p class="text-gray-400 text-xs uppercase tracking-wide mb-2">
                         Experience
@@ -165,7 +183,7 @@
                         {{ $artist->experience }}
                     </p>
 
-                </div>
+                </div> --}}
 
             </div>
 
