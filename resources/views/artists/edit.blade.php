@@ -57,83 +57,75 @@
                         class="w-full border p-2 rounded">
                 </div>
 
-
-                {{-- SKILLS --}}
+                {{-- Trade --}}
                 <div>
-                    <label>Skills (max 3)</label>
+                    <label class="block text-sm mb-2">Trade</label>
 
-                    <select id="skillsDropdown" class="w-full border p-2">
-                        <option value="">Select Skill</option>
+                    <select id="tradeSelect" name="trade"
+                        class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
 
-                        <option>Web Development</option>
-                        <option>Web Design</option>
-                        <option>SEO</option>
-                        <option>Digital Marketing</option>
-                        <option>Graphic Design</option>
-                        <option>UI/UX Design</option>
-                        <option>App Development</option>
-                        <option>WordPress Development</option>
-                        <option>Shopify Development</option>
-                        <option>Laravel Development</option>
-                        <option>React Development</option>
-                        <option>Video Editing</option>
-                        <option>Content Writing</option>
-                        <option>Social Media Management</option>
-                        <option>Photography</option>
+                        <option value="">Select Trade</option>
 
-                        <option>Cooking</option>
-                        <option>Tailoring</option>
-                        <option>Embroidery</option>
-                        <option>Arts & Crafts</option>
-                        <option>Beautician</option>
-                        <option>Tourism</option>
-                        <option>Hospitality</option>
-                        <option>Marble Mosaic</option>
+                        <option value="Tailoring" {{ $artist->trade == 'Tailoring' ? 'selected' : '' }}>Tailoring</option>
 
-                        <option value="Other">Other</option>
+                        <option value="Beautician" {{ $artist->trade == 'Beautician' ? 'selected' : '' }}>Beautician
+                        </option>
+
+                        <option value="Cooking" {{ $artist->trade == 'Cooking' ? 'selected' : '' }}>Cooking</option>
+
+                        <option value="Digital" {{ $artist->trade == 'Digital' ? 'selected' : '' }}>Digital Skills
+                        </option>
+
+                    </select>
+                </div>
+                <!-- SKILLS -->
+                <div>
+                    <label class="block text-sm mb-2">Skills (max 3)</label>
+
+                    <select id="skillsDropdown"
+                        class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500 ">
+
+
+
                     </select>
 
-                    <input id="manualSkill" type="text" placeholder="Enter skill and press Enter"
-                        class="hidden w-full border p-2 mt-2">
+                    <input id="manualSkill" type="text" placeholder="Enter custom skill and press Enter"
+                        class="hidden mt-3 w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
 
-                    <div id="skillsContainer" class="mt-2"></div>
+                    <div id="skillsContainer" class="flex flex-wrap gap-2 mt-3"></div>
 
                     <input type="hidden" name="specialization" id="skillsInput">
 
                 </div>
 
 
-                {{-- CERTIFICATIONS --}}
-                <div>
 
-                    <label>Certifications</label>
+                {{-- CERTIFICATIONS --}}
+                <div class="col-span-2">
+
+                    <label class="font-semibold">Certifications</label>
 
                     <select id="certDropdown" class="w-full border p-2">
                         <option value="">Select Certification</option>
 
+                        <option>PMP</option>
+                        <option>HubSpot Marketing</option>
                         <option>Google Analytics</option>
                         <option>Google Ads</option>
                         <option>Meta Marketing</option>
-                        <option>AWS Certification</option>
                         <option>Microsoft Azure</option>
-                        <option>CompTIA A+</option>
-                        <option>CompTIA Security+</option>
                         <option>CCNA</option>
-                        <option>PMP</option>
-                        <option>HubSpot Marketing</option>
-                        <option>Adobe Certified</option>
-
+                        <option>CompTIA Security+</option>
                         <option>TTB</option>
                         <option>SDC</option>
 
                         <option value="Other">Other</option>
-
                     </select>
 
-                    <input id="manualCert" type="text" placeholder="Enter certification and press Enter"
+                    <input id="manualCert" type="text" placeholder="Enter certification"
                         class="hidden w-full border p-2 mt-2">
 
-                    <div id="certContainer" class="mt-2"></div>
+                    <div id="certContainer" class="mt-3 space-y-2"></div>
 
                 </div>
                 {{-- Approval status --}}
@@ -190,7 +182,97 @@
                         class="w-full border p-2 rounded">{{ old('experience', $artist->experience) }}</textarea>
 
                 </div>
+                {{-- District --}}
+                <div>
+                    <label class="block text-sm mb-2">District</label>
 
+                    <select name="district"
+                        class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
+
+                        <option value="">Select District</option>
+                        <option value="Abbottabad" {{ $artist->district == 'Abbottabad' ? 'selected' : '' }}>Abbottabad
+                        </option>
+
+                        <option value="Bajaur" {{ $artist->district == 'Bajaur' ? 'selected' : '' }}>Bajaur</option>
+
+                        <option value="Bannu" {{ $artist->district == 'Bannu' ? 'selected' : '' }}>Bannu</option>
+
+                        <option value="Battagram" {{ $artist->district == 'Battagram' ? 'selected' : '' }}>Battagram
+                        </option>
+
+                        <option value="Bunir" {{ $artist->district == 'Bunir' ? 'selected' : '' }}>Bunir</option>
+
+                        <option value="Charsadda" {{ $artist->district == 'Charsadda' ? 'selected' : '' }}>Charsadda
+                        </option>
+
+                        <option value="Chitral (Lower)" {{ $artist->district == 'Chitral (Lower)' ? 'selected' : '' }}>
+                            Chitral (Lower)</option>
+
+                        <option value="Chitral (Upper)" {{ $artist->district == 'Chitral (Upper)' ? 'selected' : '' }}>
+                            Chitral (Upper)</option>
+
+                        <option value="Dera Ismail Khan" {{ $artist->district == 'Dera Ismail Khan' ? 'selected' : '' }}>
+                            Dera Ismail Khan</option>
+
+                        <option value="Hangu" {{ $artist->district == 'Hangu' ? 'selected' : '' }}>Hangu</option>
+
+                        <option value="Haripur" {{ $artist->district == 'Haripur' ? 'selected' : '' }}>Haripur</option>
+
+                        <option value="Karak" {{ $artist->district == 'Karak' ? 'selected' : '' }}>Karak</option>
+
+                        <option value="Khyber" {{ $artist->district == 'Khyber' ? 'selected' : '' }}>Khyber</option>
+
+                        <option value="Kohat" {{ $artist->district == 'Kohat' ? 'selected' : '' }}>Kohat</option>
+
+                        <option value="Kohistan (Lower)" {{ $artist->district == 'Kohistan (Lower)' ? 'selected' : '' }}>
+                            Kohistan (Lower)</option>
+
+                        <option value="Kohistan (Upper)" {{ $artist->district == 'Kohistan (Upper)' ? 'selected' : '' }}>
+                            Kohistan (Upper)</option>
+
+                        <option value="Kolai Palas" {{ $artist->district == 'Kolai Palas' ? 'selected' : '' }}>Kolai Palas
+                        </option>
+
+                        <option value="Kurram" {{ $artist->district == 'Kurram' ? 'selected' : '' }}>Kurram</option>
+
+                        <option value="Lakki Marwat" {{ $artist->district == 'Lakki Marwat' ? 'selected' : '' }}>Lakki
+                            Marwat</option>
+
+                        <option value="Malakand" {{ $artist->district == 'Malakand' ? 'selected' : '' }}>Malakand</option>
+
+                        <option value="Mansehra" {{ $artist->district == 'Mansehra' ? 'selected' : '' }}>Mansehra</option>
+
+                        <option value="Mardan" {{ $artist->district == 'Mardan' ? 'selected' : '' }}>Mardan</option>
+
+                        <option value="Mohmand" {{ $artist->district == 'Mohmand' ? 'selected' : '' }}>Mohmand</option>
+
+                        <option value="North Waziristan" {{ $artist->district == 'North Waziristan' ? 'selected' : '' }}>
+                            North Waziristan</option>
+
+                        <option value="Nowshera" {{ $artist->district == 'Nowshera' ? 'selected' : '' }}>Nowshera</option>
+
+                        <option value="Orakzai" {{ $artist->district == 'Orakzai' ? 'selected' : '' }}>Orakzai</option>
+
+                        <option value="Peshawar" {{ $artist->district == 'Peshawar' ? 'selected' : '' }}>Peshawar</option>
+
+                        <option value="Shangla" {{ $artist->district == 'Shangla' ? 'selected' : '' }}>Shangla</option>
+
+                        <option value="South Waziristan (Lower)" {{ $artist->district == 'South Waziristan (Lower)' ? 'selected' : '' }}>South Waziristan (Lower)</option>
+
+                        <option value="South Waziristan (Upper)" {{ $artist->district == 'South Waziristan (Upper)' ? 'selected' : '' }}>South Waziristan (Upper)</option>
+
+                        <option value="Swabi" {{ $artist->district == 'Swabi' ? 'selected' : '' }}>Swabi</option>
+
+                        <option value="Swat" {{ $artist->district == 'Swat' ? 'selected' : '' }}>Swat</option>
+
+                        <option value="Tank" {{ $artist->district == 'Tank' ? 'selected' : '' }}>Tank</option>
+
+                        <option value="Torghar" {{ $artist->district == 'Torghar' ? 'selected' : '' }}>Torghar</option>
+
+
+
+                    </select>
+                </div>
                 {{-- Address --}}
                 <div class="col-span-2">
 
@@ -242,54 +324,116 @@
 
     <script>
 
-        let selectedSkills = {!! json_encode(explode(',', $artist->specialization)) !!}
 
+        let selectedSkills = {!! json_encode(explode(',', $artist->specialization)) !!}
         const maxSkills = 3
 
-        const skillDropdown = document.getElementById('skillsDropdown')
 
-        const manualSkill = document.getElementById('manualSkill')
+        /* TRADE → SKILLS MAPPING */
 
+        const tradeSkills = {
 
-        function renderSkills() {
+            "Tailoring": [
+                "Tailoring",
+                "Embroidery",
+                "Clothing Design",
+                "Alterations",
+                "Pattern Making"
+            ],
 
-            let container = document.getElementById('skillsContainer')
+            "Beautician": [
+                "Haircut",
+                "Makeup",
+                "Manicure",
+                "Pedicure",
+                "Facial",
+                "Hair Styling"
+            ],
 
-            container.innerHTML = ""
+            "Cooking": [
+                "Cooking",
+                "Baking",
+                "Food Preparation",
+                "Catering"
+            ],
 
-            selectedSkills.forEach(skill => {
-
-                let tag = document.createElement('span')
-
-                tag.className = "inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full mr-2 mb-2"
-
-                tag.innerHTML = `
-${skill}
-<button type="button" class="text-yellow-700 hover:text-red-600 font-bold"
-onclick="removeSkill('${skill}')">✕</button>
-`
-
-                container.appendChild(tag)
-
-            })
-
-            document.getElementById('skillsInput').value = selectedSkills.join(',')
+            "Digital": [
+                "Web Development",
+                "Graphic Design",
+                "SEO",
+                "Digital Marketing",
+                "Video Editing",
+                "Content Writing",
+                "Social Media Management",
+                "WordPress Development",
+                "React Development",
+                "Laravel Development"
+            ]
 
         }
 
-        renderSkills()
+
+
+        /* TRADE SELECT */
+
+        const tradeSelect = document.getElementById('tradeSelect')
+        const skillDropdown = document.getElementById('skillsDropdown')
+        const manualSkill = document.getElementById('manualSkill')
+
+
+        if (tradeSelect) {
+
+            tradeSelect.addEventListener('change', function () {
+
+                let trade = this.value
+
+                skillDropdown.innerHTML = '<option value="">Select Skill</option>'
+
+                if (tradeSkills[trade]) {
+
+                    tradeSkills[trade].forEach(skill => {
+
+                        let opt = document.createElement('option')
+                        opt.value = skill
+                        opt.textContent = skill
+
+                        skillDropdown.appendChild(opt)
+
+                    })
+
+                }
+
+                let other = document.createElement('option')
+                other.value = "Other"
+                other.textContent = "Other"
+
+                skillDropdown.appendChild(other)
+
+            })
+
+        }
+
+
+
+        /* SKILLS */
 
         skillDropdown.addEventListener('change', function () {
 
             let value = this.value
 
-            if (value === "Other") { manualSkill.classList.remove('hidden'); return }
+            if (value === "Other") {
+                manualSkill.classList.remove('hidden')
+                return
+            }
 
             manualSkill.classList.add('hidden')
 
             if (!value) return
 
-            if (selectedSkills.length >= maxSkills) { alert("Maximum 3 skills allowed"); return }
+            if (selectedSkills.length >= maxSkills) {
+                alert("Maximum 3 skills allowed")
+                return
+            }
 
             if (selectedSkills.includes(value)) return
 
@@ -302,6 +446,7 @@ onclick="removeSkill('${skill}')">✕</button>
         })
 
 
+
         manualSkill.addEventListener('keypress', function (e) {
 
             if (e.key === "Enter") {
@@ -312,22 +457,51 @@ onclick="removeSkill('${skill}')">✕</button>
 
                 if (!value) return
 
-                if (selectedSkills.length >= maxSkills) { alert("Maximum 3 skills allowed"); return }
+                if (selectedSkills.length >= maxSkills) {
+                    alert("Maximum 3 skills allowed")
+                    return
+                }
 
                 selectedSkills.push(value)
 
                 renderSkills()
 
                 this.value = ""
-
                 manualSkill.classList.add('hidden')
-
                 skillDropdown.value = ""
 
             }
 
         })
 
+
+
+        function renderSkills() {
+
+            let container = document.getElementById('skillsContainer')
+
+            container.innerHTML = ""
+
+            selectedSkills.forEach(skill => {
+
+                let tag = document.createElement('span')
+
+                tag.className = "inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 text-sm px-3 py-1 rounded-full"
+
+                tag.innerHTML = `
+        ${skill}
+        <button type="button" onclick="removeSkill('${skill}')" class="font-bold">✕</button>
+        `
+
+                container.appendChild(tag)
+
+            })
+
+            document.getElementById('skillsInput').value = selectedSkills.join(',')
+
+        }
+
+        renderSkills()
 
         function removeSkill(skill) {
 
@@ -339,38 +513,87 @@ onclick="removeSkill('${skill}')">✕</button>
 
 
 
-        let existingCerts = {!! json_encode($artist->certification ?? []) !!}
+        /* EXISTING CERTIFICATIONS */
 
-        function addCertification(cert) {
+        let existingCerts = @json($artist->certifications);
+
+        function getYearOptions(selectedYear = null) {
+
+            let options = ""
+
+            let currentYear = new Date().getFullYear()
+
+            for (let y = currentYear; y >= 1990; y--) {
+
+                let selected = selectedYear == y ? "selected" : ""
+
+                options += `<option value="${y}" ${selected}>${y}</option>`
+
+            }
+
+            return options
+        }
+
+        function addCertification(cert, year = null) {
 
             let container = document.getElementById('certContainer')
 
-            let tag = document.createElement('span')
+            let row = document.createElement('div')
 
-            tag.className = "inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full mr-2 mb-2"
+            row.className = "flex gap-3 items-center"
 
-            tag.innerHTML = `
-${cert}
-<button type="button" class="text-yellow-700 hover:text-red-600 font-bold"
-onclick="this.parentElement.remove()">✕</button>
-<input type="hidden" name="certification[]" value="${cert}">
+            row.innerHTML = `
+
+<span class="bg-yellow-100 px-3 py-1 rounded">${cert}</span>
+
+<span>year</span>
+
+<select name="certification_year[]" class="border p-1 rounded w-24">
+${getYearOptions(year)}
+</select>
+
+<input type="hidden" name="certification_name[]" value="${cert}">
+
+<button type="button"
+onclick="this.parentElement.remove()"
+class="text-red-600 font-bold">
+✕
+</button>
+
 `
 
-            container.appendChild(tag)
+            container.appendChild(row)
 
         }
 
-        existingCerts.forEach(c => addCertification(c))
+
+        /* LOAD EXISTING CERTIFICATIONS */
+
+        existingCerts.forEach(cert => {
+
+            addCertification(cert.certification_name, cert.certification_year)
+
+        })
+
+
+        /* DROPDOWN */
 
         const certDropdown = document.getElementById('certDropdown')
 
         const manualCert = document.getElementById('manualCert')
 
+
         certDropdown.addEventListener('change', function () {
 
             let val = this.value
 
-            if (val === "Other") { manualCert.classList.remove('hidden'); return }
+            if (val === "Other") {
+
+                manualCert.classList.remove('hidden')
+
+                return
+
+            }
 
             manualCert.classList.add('hidden')
 
@@ -383,6 +606,8 @@ onclick="this.parentElement.remove()">✕</button>
         })
 
 
+        /* MANUAL CERT */
+
         manualCert.addEventListener('keypress', function (e) {
 
             if (e.key === "Enter") {
@@ -391,22 +616,17 @@ onclick="this.parentElement.remove()">✕</button>
 
                 let val = this.value.trim()
 
-                if (val) {
+                if (!val) return
 
-                    addCertification(val)
+                addCertification(val)
 
-                    this.value = ""
+                this.value = ""
 
-                    manualCert.classList.add('hidden')
-
-                    certDropdown.value = ""
-
-                }
+                manualCert.classList.add('hidden')
 
             }
 
         })
-
     </script>
 
 </x-app-layout>

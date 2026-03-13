@@ -22,7 +22,8 @@
                 <h2 class="text-lg font-semibold">{{ $artist->name }}</h2>
                 <p class="text-gray-500 text-sm">{{ ucfirst($artist->gender) }}</p>
 
-                <div class="mt-4 text-sm text-gray-600">
+                <div class="mt-4 text-sm text-gray-600 flex flex-col items-start gap-3">
+                    <p><strong>Trade: </strong>{{ $artist->trade }}</p>
                     <p><strong>Age:</strong> {{ $artist->age }}</p>
                     <p><strong>Contact:</strong> {{ $artist->contact }}</p>
                 </div>
@@ -33,12 +34,12 @@
             <!-- DETAILS CARD -->
             <div class="md:col-span-2 bg-white shadow rounded-xl p-6 space-y-5">
 
-                <div>
+                {{-- <div>
                     <p class="font-semibold">Current Status</p>
                     <p class="text-gray-600">
                         {{ str_replace('_', ' ', $artist->current_status) }}
                     </p>
-                </div>
+                </div> --}}
 
 
                 <!-- SKILLS -->
@@ -61,30 +62,24 @@
                 </div>
 
 
-                <!-- CERTIFICATIONS -->
-                @if($artist->certification)
 
-                    <div>
-                        <p class="font-semibold mb-2">Certifications</p>
+                <div class="flex flex-col gap-2">
 
-                        <div class="flex flex-wrap gap-2">
+                    @foreach($artist->certifications as $cert)
+                        <p class="font-semibold">Certifications</p>
 
-                            @foreach($artist->certification as $cert)
+                        {{-- <p class="text-xs px-3 py-1 rounded-full flex w-full gap-3 items-center">
+                            <span>Certificate</span> -
+                            <span>Year</span>
+                        </p> --}}
+                        <p class="text-sm px-3 py-1 rounded-full flex w-full gap-2">
+                            <span>{{ $cert->certification_name }}</span> -
+                            <span>{{ $cert->certification_year }}</span>
+                        </p>
 
-                                @if(trim($cert) != '')
-                                    <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full">
-                                        {{ trim($cert) }}
-                                    </span>
-                                @endif
+                    @endforeach
 
-                            @endforeach
-
-                        </div>
-
-                    </div>
-
-                @endif
-
+                </div>
                 <div>
                     <p class="font-semibold">Experience</p>
                     <p class="text-gray-600">
@@ -92,6 +87,14 @@
                     </p>
                 </div>
 
+                {{-- district --}}
+                <div>
+                    <p class="font-semibold">District</p>
+                    <p class="text-gray-600">
+                        {{ $artist->district }}
+                    </p>
+                </div>
+                {{-- address --}}
 
                 <div>
                     <p class="font-semibold">Address</p>

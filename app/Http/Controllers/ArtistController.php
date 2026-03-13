@@ -38,6 +38,8 @@ class ArtistController extends Controller
     }
     public function show(Artist $artist)
     {
+        $artist->load('certifications');
+
         return view('artists.show', compact('artist'));
     }
 
@@ -53,7 +55,10 @@ class ArtistController extends Controller
             'contact' => 'required|min:12|max:13',
             'email' => 'required',
             'address' => 'required',
-            'certification' => 'nullable|array',
+            'trade' => 'required|string',
+            'district' => 'required|string',
+            'certification_name.*' => 'nullable|string',
+            'certification_year.*' => 'nullable|string',
             'current_status' => 'required',
             'cv' => 'nullable|mimes:pdf,doc,docx|max:2048',
             'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
@@ -70,7 +75,21 @@ class ArtistController extends Controller
 
         $validated['approval_status'] = 'approved';
 
-        Artist::create($validated);
+        $artist = Artist::create($validated);
+
+        if ($request->certification_name) {
+            foreach ($request->certification_name as $index => $name) {
+
+                if ($name) {
+
+                    $artist->certifications()->create([
+                        'certification_name' => $name,
+                        'certification_year' => $request->certification_year[$index] ?? null
+                    ]);
+
+                }
+            }
+        }
 
         return redirect()->route('artists.index')
             ->with('success', 'Artist created successfully.');
@@ -93,7 +112,10 @@ class ArtistController extends Controller
             'contact' => 'required|min:12|max:13',
             'email' => 'required',
             'address' => 'required',
-            'certification' => 'nullable|array',
+            'trade' => 'required|string',
+            'district' => 'required|string',
+            'certification_name.*' => 'nullable|string',
+            'certification_year.*' => 'nullable|string',
             'current_status' => 'required',
             'approval_status' => 'required',
             'cv' => 'nullable|mimes:pdf,doc,docx|max:2048',
@@ -117,6 +139,24 @@ class ArtistController extends Controller
 
         $artist->update($validated);
 
+        // delete old certifications
+        $artist->certifications()->delete();
+
+        if ($request->certification_name) {
+
+            foreach ($request->certification_name as $index => $name) {
+
+                if ($name) {
+
+                    $artist->certifications()->create([
+                        'certification_name' => $name,
+                        'certification_year' => $request->certification_year[$index] ?? null
+                    ]);
+
+                }
+            }
+        }
+
         return redirect()->route('artists.index')
             ->with('success', 'Artist updated successfully.');
     }
@@ -130,6 +170,8 @@ class ArtistController extends Controller
         if ($artist->profile_photo_path) {
             Storage::disk('public')->delete($artist->profile_photo_path);
         }
+
+        $artist->certifications()->delete();
 
         $artist->delete();
 

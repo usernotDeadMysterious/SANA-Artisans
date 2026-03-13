@@ -97,7 +97,20 @@
                                 placeholder="Matric / F.Sc / BS-CS">
                         </div>
 
+                        <div>
+                            <label class="block text-sm mb-2">Trade</label>
 
+                            <select id="tradeSelect"
+                                class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
+
+                                <option value="">Select Trade</option>
+                                <option value="Tailoring">Tailoring</option>
+                                <option value="Beautician">Beautician</option>
+                                <option value="Cooking">Cooking</option>
+                                <option value="Digital">Digital Skills</option>
+
+                            </select>
+                        </div>
                         <!-- SKILLS -->
                         <div>
                             <label class="block text-sm mb-2">Skills (max 3)</label>
@@ -142,7 +155,7 @@
 
                         </div>
 
-
+                        {{-- current_status --}}
                         <div class="md:col-span-2">
                             <label class="block text-sm mb-2">Current Status</label>
                             <select name="current_status"
@@ -166,6 +179,51 @@
                             placeholder="I have 5 years of experience in full stack software development including web applications and mobile applications."></textarea>
                     </div>
 
+                    {{-- District --}}
+                    <div>
+                        <label class="block text-sm mb-2">District</label>
+
+                        <select name="district"
+                            class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
+
+                            <option value="">Select District</option>
+                            <option>Abbottabad</option>
+                            <option>Bajaur</option>
+                            <option>Bannu</option>
+                            <option>Battagram</option>
+                            <option>Bunir</option>
+                            <option>Charsadda</option>
+                            <option>Chitral (Lower)</option>
+                            <option>Chitral (Upper)</option>
+                            <option>Dera Ismail Khan</option>
+                            <option>Hangu</option>
+                            <option>Haripur</option>
+                            <option>Karak</option>
+                            <option>Khyber</option>
+                            <option>Kohat</option>
+                            <option>Kohistan (Lower)</option>
+                            <option>Kohistan (Upper)</option>
+                            <option>Kolai Palas</option>
+                            <option>Kurram</option>
+                            <option>Lakki Marwat</option>
+                            <option>Malakand</option>
+                            <option>Mansehra</option>
+                            <option>Mardan</option>
+                            <option>Mohmand</option>
+                            <option>North Waziristan</option>
+                            <option>Nowshera</option>
+                            <option>Orakzai</option>
+                            <option>Peshawar</option>
+                            <option>Shangla</option>
+                            <option>South Waziristan (Lower)</option>
+                            <option>South Waziristan (Upper)</option>
+                            <option>Swabi</option>
+                            <option>Swat</option>
+                            <option>Tank</option>
+                            <option>Torghar</option>
+
+                        </select>
+                    </div>
                     <div class="mt-6">
                         <label class="block text-sm mb-2">Address</label>
                         <textarea name="address"
@@ -245,8 +303,94 @@
         let selectedSkills = []
         const maxSkills = 3
 
+
+        /* TRADE → SKILLS MAPPING */
+
+        const tradeSkills = {
+
+            "Tailoring": [
+                "Tailoring",
+                "Embroidery",
+                "Clothing Design",
+                "Alterations",
+                "Pattern Making"
+            ],
+
+            "Beautician": [
+                "Haircut",
+                "Makeup",
+                "Manicure",
+                "Pedicure",
+                "Facial",
+                "Hair Styling"
+            ],
+
+            "Cooking": [
+                "Cooking",
+                "Baking",
+                "Food Preparation",
+                "Catering"
+            ],
+
+            "Digital": [
+                "Web Development",
+                "Graphic Design",
+                "SEO",
+                "Digital Marketing",
+                "Video Editing",
+                "Content Writing",
+                "Social Media Management",
+                "WordPress Development",
+                "React Development",
+                "Laravel Development"
+            ]
+
+        }
+
+
+
+        /* TRADE SELECT */
+
+        const tradeSelect = document.getElementById('tradeSelect')
         const skillDropdown = document.getElementById('skillsDropdown')
         const manualSkill = document.getElementById('manualSkill')
+
+
+        if (tradeSelect) {
+
+            tradeSelect.addEventListener('change', function () {
+
+                let trade = this.value
+
+                skillDropdown.innerHTML = '<option value="">Select Skill</option>'
+
+                if (tradeSkills[trade]) {
+
+                    tradeSkills[trade].forEach(skill => {
+
+                        let opt = document.createElement('option')
+                        opt.value = skill
+                        opt.textContent = skill
+
+                        skillDropdown.appendChild(opt)
+
+                    })
+
+                }
+
+                let other = document.createElement('option')
+                other.value = "Other"
+                other.textContent = "Other"
+
+                skillDropdown.appendChild(other)
+
+            })
+
+        }
+
+
+
+        /* SKILLS */
 
         skillDropdown.addEventListener('change', function () {
 
@@ -277,6 +421,7 @@
         })
 
 
+
         manualSkill.addEventListener('keypress', function (e) {
 
             if (e.key === "Enter") {
@@ -305,17 +450,23 @@
         })
 
 
+
         function renderSkills() {
 
             let container = document.getElementById('skillsContainer')
+
             container.innerHTML = ""
 
             selectedSkills.forEach(skill => {
 
                 let tag = document.createElement('span')
-                tag.className = "bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm flex items-center gap-2"
 
-                tag.innerHTML = skill + `<button type="button" onclick="removeSkill('${skill}')">✕</button>`
+                tag.className = "inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 text-sm px-3 py-1 rounded-full"
+
+                tag.innerHTML = `
+                    ${skill}
+                    <button type="button" onclick="removeSkill('${skill}')" class="font-bold">✕</button>
+                    `
 
                 container.appendChild(tag)
 
@@ -325,10 +476,34 @@
 
         }
 
+
+
         function removeSkill(skill) {
 
             selectedSkills = selectedSkills.filter(s => s !== skill)
+
             renderSkills()
+
+        }
+
+
+
+
+        /* CERTIFICATIONS */
+
+        function getYearOptions() {
+
+            let currentYear = new Date().getFullYear()
+
+            let years = ""
+
+            for (let y = currentYear; y >= 1990; y--) {
+
+                years += `<option value="${y}">${y}</option>`
+
+            }
+
+            return years
 
         }
 
@@ -338,13 +513,31 @@
 
             let container = document.getElementById('certContainer')
 
-            let tag = document.createElement('span')
-            tag.className = "bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm flex items-center gap-2"
+            let row = document.createElement('div')
 
-            tag.innerHTML = cert + `<button type="button" onclick="this.parentElement.remove()">✕</button>
-                                                                        <input type="hidden" name="certification[]" value="${cert}">`
+            row.className = "flex items-center gap-3 mt-2"
 
-            container.appendChild(tag)
+            row.innerHTML = `
+
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded">
+                    ${cert}
+                    </span>
+
+                    <span class="text-sm">Year</span>
+
+                    <select name="certification_year[]" class="border w-20 rounded px-2 py-1">
+                    ${getYearOptions()}
+                    </select>
+
+                    <input type="hidden" name="certification_name[]" value="${cert}">
+
+                    <button type="button" onclick="this.parentElement.remove()" class="text-red-600 font-bold">
+                    ✕
+                    </button>
+
+                    `
+
+            container.appendChild(row)
 
         }
 

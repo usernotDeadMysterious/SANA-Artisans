@@ -41,44 +41,84 @@
                 </div>
 
                 <!-- SEARCH FORM -->
-                <form method="GET">
+                <form method="GET" action="{{ url('/artisans') }}" id="artisanFilterForm">
 
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-                        <input type="text" name="search" placeholder="Search artisans..." value="{{ request('search') }}"
-                            class="border rounded-lg p-3 w-full focus:ring-2 focus:ring-yellow-400 focus:outline-none">
+                        {{-- SEARCH (1/3 WIDTH) --}}
+                        <div class="md:col-span-1">
+                            <input type="text" name="search" placeholder="Search artisan by name..."
+                                value="{{ request('search') }}"
+                                class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none">
+                        </div>
 
-                        <select name="category" class="border rounded-lg p-3 w-full focus:ring-2 focus:ring-yellow-400">
 
-                            <option value="">All Categories</option>
+                        {{-- FILTERS (2/3 WIDTH) --}}
+                        <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
 
-                            @foreach($categories as $cat)
-                                <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
-                                    {{ $cat }}
-                                </option>
-                            @endforeach
+                            <select id="tradeSelect" name="trade"
+                                class="border rounded-lg p-3 w-full focus:ring-2 focus:ring-yellow-400">
 
-                        </select>
+                                <option value="">All Trades</option>
 
-                        <select name="gender" class="border rounded-lg p-3 w-full focus:ring-2 focus:ring-yellow-400">
+                                @foreach($trades as $trade)
 
-                            <option value="">Gender</option>
+                                    <option value="{{ $trade }}" {{ request('trade') == $trade ? 'selected' : '' }}>
 
-                            <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Male</option>
-                            <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Female</option>
-                            <option value="other" {{ request('gender') == 'other' ? 'selected' : '' }}>Other</option>
+                                        {{ $trade }}
 
-                        </select>
+                                    </option>
 
-                        <button class="bg-black hover:bg-gray-800 text-white rounded-lg p-3 font-semibold transition">
-                            Search
+                                @endforeach
+
+                            </select>
+
+                            <select id="skillsDropdown" name="skill"
+                                class="border rounded-lg p-3 w-full focus:ring-2 focus:ring-yellow-400">
+
+                                <option value="">Select trade first</option>
+
+                            </select>
+
+
+                            <select name="gender" id="genderSelect"
+                                class="border rounded-lg p-3 w-full focus:ring-2 focus:ring-yellow-400">
+
+                                <option value="">Gender</option>
+
+                                <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Male</option>
+
+                                <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Female</option>
+
+                                <option value="other" {{ request('gender') == 'other' ? 'selected' : '' }}>Other</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- BUTTONS ROW --}}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+
+                        <button type="submit"
+                            class="bg-yellow-500/70 hover:bg-yellow-800 text-white rounded-lg p-3 font-semibold transition">
+
+                            Search Name
+
                         </button>
+
+                        <a href="{{ url('/artisans') }}"
+                            class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg p-3 text-center font-semibold transition">
+
+                            Clear Filters
+
+                        </a>
 
                     </div>
 
                 </form>
-
-
 
             </div>
 
@@ -89,9 +129,11 @@
 
     <!-- ARTISANS SECTION -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        @if(request()->hasAny(['search', 'category', 'gender']))
+        @if(request()->hasAny(['search', 'trade', 'skill', 'gender']))
             <div class="mt-2 p-5 w-full flex text-sm text-gray-600" id="searchResults">
-                Search results: <strong class="text-black">{{  $artists->total() }} </strong> artisans found
+                Search results:
+                <span class="text-black font-semibold ml-1">{{ $artists->total() }}</span>
+                <span class="ml-1"> artisans found</span>
             </div>
         @endif
 
@@ -124,28 +166,41 @@
                             {{ $artist->name }}
                         </h3>
 
-                        <!-- SKILLS -->
-                        <div class="flex flex-wrap justify-center gap-1 mt-3">
+                        <div class="flex flex-col items-center text-center">
+                            {{-- Trade --}}
 
-                            @foreach(explode(',', $artist->specialization) as $skill)
+                            <p class="text-sm font-semibold p-2 rounded-xl text-gray-800 text-center">
+                                <span class="text-yellow-500">{{ $artist->trade }}</span>
+                            </p>
 
-                                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">
-                                    {{ trim($skill) }}
-                                </span>
+                            <!-- SKILLS -->
+                            <p class="text-sm font-semibold text-gray-400 text-center mt-0 p-2">
+                                Skills
+                            </p>
 
-                            @endforeach
 
+                            <div class="flex flex-wrap justify-center gap-1 mt-0">
+
+                                @foreach(explode(',', $artist->specialization) as $skill)
+
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">
+                                        {{ trim($skill) }}
+                                    </span>
+
+                                @endforeach
+
+                            </div>
+
+                            <!-- CONTACT -->
+                            <p class="text-sm text-gray-600 text-center mt-4">
+                                Contact: {{ $artist->contact }}
+                            </p>
+
+                            <!-- GENDER -->
+                            <p class="text-xs text-gray-500 text-center capitalize mt-1">
+                                {{ $artist->gender }}
+                            </p>
                         </div>
-
-                        <!-- CONTACT -->
-                        <p class="text-sm text-gray-600 text-center mt-4">
-                            Contact: {{ $artist->contact }}
-                        </p>
-
-                        <!-- GENDER -->
-                        <p class="text-xs text-gray-500 text-center capitalize mt-1">
-                            {{ $artist->gender }}
-                        </p>
 
                         <!-- BUTTON -->
                         <a href="{{ route('public.artisan.detail', $artist->id) }}"
@@ -172,8 +227,148 @@
 
     @include('frontend.footer')
 
-    @if(request()->hasAny(['search', 'category', 'gender']))
+    @if(true)
         <script>
+
+            const tradeSkills = {
+
+                "Tailoring": [
+                    "Tailoring",
+                    "Embroidery",
+                    "Clothing Design",
+                    "Alterations",
+                    "Pattern Making"
+                ],
+
+                "Beautification": [
+                    "Haircut",
+                    "Makeup",
+                    "Manicure",
+                    "Pedicure",
+                    "Facial",
+                    "Hair Styling"
+                ],
+
+                "Cooking": [
+                    "Cooking",
+                    "Baking",
+                    "Food Preparation",
+                    "Catering",
+                    "Kitchen Management"
+                ],
+
+                "Digital Skills": [
+                    "Web Development",
+                    "Graphic Design",
+                    "Digital Marketing",
+                    "SEO",
+                    "Video Editing",
+                    "Content Writing",
+                    "Social Media Management",
+                    "Photography",
+                    "WordPress Development",
+                    "React Development",
+                    "Laravel Development"
+                ]
+
+            };
+
+
+            const tradeSelect = document.getElementById("tradeSelect")
+            const skillsDropdown = document.getElementById("skillsDropdown")
+            const genderSelect = document.getElementById("genderSelect")
+            const form = document.getElementById("artisanFilterForm")
+
+
+            function loadSkills(trade) {
+
+                skillsDropdown.innerHTML = ''
+
+                if (!trade) {
+
+                    let option = document.createElement("option")
+                    option.value = ""
+                    option.textContent = "Select trade first"
+
+                    skillsDropdown.appendChild(option)
+
+                    return
+
+                }
+
+                let defaultOption = document.createElement("option")
+                defaultOption.value = ""
+                defaultOption.textContent = "All Skills"
+
+                skillsDropdown.appendChild(defaultOption)
+
+
+                if (tradeSkills[trade]) {
+
+                    tradeSkills[trade].forEach(skill => {
+
+                        let option = document.createElement("option")
+
+                        option.value = skill
+                        option.textContent = skill
+
+                        if (skill === "{{ request('skill') }}") {
+                            option.selected = true
+                        }
+
+                        skillsDropdown.appendChild(option)
+
+                    })
+
+                }
+
+            }
+            // load skills if trade already selected
+            document.addEventListener("DOMContentLoaded", function () {
+
+                if (tradeSelect.value) {
+                    loadSkills(tradeSelect.value)
+                }
+
+            })
+
+
+            // TRADE CHANGE → AUTO SEARCH
+            tradeSelect.addEventListener("change", function () {
+
+                loadSkills(this.value)
+                form.submit()
+
+            })
+
+
+            // SKILL CHANGE → AUTO SEARCH
+            skillsDropdown.addEventListener("change", function () {
+
+                form.submit()
+
+            })
+
+
+            // GENDER CHANGE → AUTO SEARCH
+            genderSelect.addEventListener("change", function () {
+
+                form.submit()
+
+            })
+            document.addEventListener("DOMContentLoaded", function () {
+
+                if (tradeSelect.value) {
+                    loadSkills(tradeSelect.value)
+                } else {
+                    loadSkills('')
+                }
+
+            })
+
+
+
+            // SCROLL TO RESULTS AFTER FILTER
             document.addEventListener("DOMContentLoaded", function () {
 
                 const results = document.getElementById("searchResults");
@@ -186,6 +381,7 @@
                 }
 
             });
+
         </script>
     @endif
 

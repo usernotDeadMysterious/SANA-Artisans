@@ -16,14 +16,16 @@ class Artist extends Model
         'contact',
         'email',
         'address',
-        'certification',
+        'trade',
+        'district',
         'current_status',
         'cv_path',
         'profile_photo_path',
         'approval_status',
     ];
 
-    protected $casts = [
-        'certification' => 'array',
-    ];
+    public function certifications()
+    {
+        return $this->hasMany(ArtistCertification::class);
+    }
 }

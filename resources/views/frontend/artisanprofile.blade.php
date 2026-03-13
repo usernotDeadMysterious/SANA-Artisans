@@ -2,21 +2,21 @@
 
 @section('content')
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
             {{-- PROFILE CARD --}}
-            <div class="bg-white shadow-xl rounded-2xl p-8 text-center h-fit">
+            <div class="bg-white shadow-lg rounded-2xl p-8 text-center h-fit">
 
                 <div class="flex justify-center mb-6">
                     @if($artist->profile_photo_path)
                         <img src="{{ asset('storage/' . $artist->profile_photo_path) }}"
-                            class="w-60 h-60 mx-auto rounded-full object-cover mb-4 border">
+                            class="w-56 h-56 rounded-full object-cover border-4 border-gray-500 bg-red-400 shadow">
+
                     @else
-                        <img src="{{ asset('images/placeholder.jpg')  }}"
-                            class="w-60 h-60 mx-auto rounded-full object-cover mb-4 border">
+                        <img src="{{ asset('images/placeholder.jpg') }}"
+                            class="w-56 h-56 rounded-full object-cover border-4 border-yellow-200 shadow-lg">
                     @endif
                 </div>
 
@@ -24,48 +24,55 @@
                     {{ $artist->name }}
                 </h2>
 
-                {{-- Trade --}}
-                <div class="flex flex-wrap justify-center gap-2 mt-4">
-
-                    Trade
+                {{-- TRADE --}}
+                <div class="mt-4 bg-yellow-200 rounded-xl p-2 font-bold ">
+                    <p class="text-sm">
+                        Trade - <span class="bg-yellow-100 text-yellow-800 px-4 py-1 rounded-full font-semibold">
+                            {{ $artist->trade }}
+                        </span>
+                    </p>
 
                 </div>
 
                 <div class="mt-6 text-sm text-gray-600 space-y-2">
 
                     <p>
-                        <span class="font-semibold">Contact:</span>
+                        <span class="font-semibold text-gray-700">Contact:</span>
                         {{ $artist->contact }}
                     </p>
 
                     <p>
-                        <span class="font-semibold">Email:</span>
+                        <span class="font-semibold text-gray-700">Email:</span>
                         {{ $artist->email }}
                     </p>
 
                     <p class="capitalize">
-                        <span class="font-semibold">Gender:</span>
+                        <span class="font-semibold text-gray-700">Gender:</span>
                         {{ $artist->gender }}
+                    </p>
+
+                    <p>
+                        <span class="font-semibold text-gray-700">District:</span>
+                        {{ $artist->district }}
                     </p>
 
                 </div>
 
+                {{-- CV BUTTONS --}}
                 @if($artist->cv_path)
 
                     <div class="mt-6 space-y-3">
 
                         <a href="{{ asset('storage/' . $artist->cv_path) }}" target="_blank"
-                            class="block bg-gray-700 hover:bg-gray-800 text-white py-2 rounded-lg font-medium transition">
+                            class="block bg-gray-800 hover:bg-gray-900 text-white py-2 rounded-lg font-medium transition">
 
                             View CV
-
                         </a>
 
                         <a href="{{ route('artists.cv', $artist) }}"
                             class="block bg-yellow-500 hover:bg-yellow-600 text-black py-2 rounded-lg font-semibold transition">
 
                             Download CV
-
                         </a>
 
                     </div>
@@ -75,96 +82,118 @@
             </div>
 
 
-            {{-- DETAILS CARD --}}
-            <div class="lg:col-span-2 bg-white shadow-xl rounded-2xl p-10">
+            {{-- DETAILS SECTION --}}
+            <div class="lg:col-span-2 bg-white shadow-lg rounded-2xl p-10 bg-yellow-100/20">
 
-                <h3 class="text-2xl font-bold mb-8 border-b pb-4">
-                    Artisan Details
+                <h3 class="text-2xl  font-bold mb-8 border-b pb-4  ">
+                    Details
                 </h3>
 
                 <div class="grid md:grid-cols-2 gap-6">
 
-                    {{-- Qualification --}}
-                    <div class="bg-gray-50 rounded-lg p-4">
+                    {{-- QUALIFICATION --}}
+                    <div class="bg-gray-50 rounded-xl p-5">
                         <p class="text-gray-400 text-xs uppercase tracking-wide">
                             Qualification
                         </p>
 
-                        <p class="text-gray-800 text-lg font-semibold mt-1">
+                        <p class="text-gray-800 text-md font-semibold mt-1">
                             {{ $artist->qualification }}
                         </p>
                     </div>
 
 
-                    {{-- Current Status --}}
-                    {{-- <div class="bg-gray-50 rounded-lg p-4">
+                    {{-- CURRENT STATUS --}}
+                    <div class="bg-gray-50 rounded-xl p-5">
                         <p class="text-gray-400 text-xs uppercase tracking-wide">
-                            Current Status
+                            Trade
                         </p>
 
-                        <p class="text-gray-800 text-lg font-semibold mt-1 capitalize">
-                            {{ str_replace('_', ' ', $artist->current_status) }}
+                        <p class="text-gray-800 text-md font-semibold mt-1 capitalize">
+                            {{ str_replace('_', ' ', $artist->trade) }}
                         </p>
-                    </div> --}}
+                    </div>
 
 
-
-                    {{-- Skills --}}
-                    <div class="bg-gray-50 rounded-lg p-4">
-                        <p class="text-gray-400 text-xs uppercase tracking-wide">
+                    {{-- SKILLS --}}
+                    <div class="bg-gray-50 rounded-xl p-5">
+                        <p class="text-gray-400 text-xs uppercase tracking-wide mb-2">
                             Skills
                         </p>
-                        @foreach(explode(',', $artist->specialization) as $skill)
 
-                            <ul class="text-black text-xs  py-1 rounded-full  ">
-                                {{ trim($skill) }}
-                            </ul>
+                        <div class="flex flex-wrap gap-2">
 
-                        @endforeach
+                            @foreach(explode(',', $artist->specialization) as $skill)
+
+                                <span class="bg-yellow-100 text-indigo-700 text-xs px-3 py-1 rounded-full">
+                                    {{ trim($skill) }}
+                                </span>
+
+                            @endforeach
+
+                        </div>
                     </div>
-                    {{-- Certifications --}}
-                    <div class="bg-gray-50 rounded-lg p-4">
 
-                        <p class="text-gray-400 text-xs uppercase tracking-wide">
+
+                    {{-- CERTIFICATIONS --}}
+                    <div class="bg-gray-50 rounded-xl p-3">
+
+                        <p class="text-gray-400 text-xs uppercase tracking-wide mb-2">
                             Certifications
                         </p>
 
-                        <div class="flex flex-wrap gap-2 mt-2">
+                        @if($artist->certifications->count())
 
-                            @if($artist->certification)
+                            <div class="space-y-2">
 
-                                @foreach($artist->certification as $cert)
+                                @foreach($artist->certifications as $cert)
 
-                                    <span class="bg-gray-200 text-gray-700 text-xs px-3 py-1 rounded-full">
-                                        {{ $cert }}
-                                    </span>
+                                    <div class="flex justify-between  px-3 py-2 rounded-lg text-sm">
+
+                                        <span class="font-semibold text-yellow-700">
+                                            {{ $cert->certification_name }}
+                                        </span>
+
+                                        <span class="text-gray-600">
+                                            {{ $cert->certification_year }}
+                                        </span>
+
+                                    </div>
 
                                 @endforeach
 
-                            @endif
+                            </div>
 
-                        </div>
+                        @else
+
+                            <p class="text-gray-400 text-sm">
+                                No certifications listed
+                            </p>
+
+                        @endif
 
                     </div>
 
-                    {{-- District --}}
-                    <div class="bg-gray-50 rounded-lg p-4">
+
+                    {{-- DISTRICT --}}
+                    <div class="bg-gray-50 rounded-xl p-3">
                         <p class="text-gray-400 text-xs uppercase tracking-wide">
                             District
                         </p>
 
-                        <p class="text-gray-800 text-lg font-semibold mt-1">
-                            {{ $artist->address }}
+                        <p class="text-gray-800 text-md font-semibold mt-1">
+                            {{ $artist->district }}
                         </p>
                     </div>
 
-                    {{-- Address --}}
-                    <div class="bg-gray-50 rounded-lg p-4">
-                        <p class="text-gray-400 text-xs uppercase tracking-wide">
-                            Address
-                        </p>
 
-                        <p class="text-gray-800 text-lg font-semibold mt-1">
+                    {{-- ADDRESS --}}
+                    <div class="bg-gray-50 rounded-xl p-3">
+                        <span class="text-gray-400 text-xs uppercase tracking-wide">
+                            Address
+                        </span>
+
+                        <p class="text-gray-800 text-md font-semibold mt-1">
                             {{ $artist->address }}
                         </p>
                     </div>
@@ -173,7 +202,9 @@
 
 
                 {{-- EXPERIENCE --}}
-                {{-- <div class="mt-8 bg-gray-50 rounded-lg p-6">
+                {{-- @if($artist->experience)
+
+                <div class="mt-10 bg-gray-50 rounded-xl p-6">
 
                     <p class="text-gray-400 text-xs uppercase tracking-wide mb-2">
                         Experience
@@ -183,10 +214,19 @@
                         {{ $artist->experience }}
                     </p>
 
-                </div> --}}
+                </div>
+
+                @endif --}}
 
             </div>
 
+        </div>
+
+        <div class="w-full flex justify-end  p-4">
+            <a href="https://jobs.sanaartisan.com/artisans"
+                class="text-sm font-medium  bg-yellow-200 p-2 rounded-lg hover:text-yellow-800 hover:underline transition">
+                ← Back to Artisans Directory
+            </a>
         </div>
 
     </div>
