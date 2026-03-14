@@ -2,31 +2,51 @@
 
 @section('content')
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    {{-- images rendering --}}
+    @php
+        $tradeImages = [
+            'Beautification' => 'images/trades/Beautification.png',
+            'Cooking' => 'images/trades/Cooking.png',
+            'Tailoring' => 'images/trades/Tailoring.png',
+            'Digital Skills' => 'images/trades/digiskills.png',
+        ];
+
+        $tradeImage = $tradeImages[$artist->trade] ?? null;
+    @endphp
+
+    <div class="w-full min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-14" style="
+                                                                @if($tradeImage)
+                                                                    background-image: url('{{ asset($tradeImage) }}');
+                                                                    background-size: cover;
+                                                                    background-position: center;
+                                                                    background-repeat: no-repeat;
+                                                                    background-attachment: fixed;
+                                                                @endif
+                                                            ">
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
             {{-- PROFILE CARD --}}
-            <div class="bg-white shadow-lg rounded-2xl p-8 text-center h-fit">
+            <div class=" backdrop-blur-xs bg-yellow-50/90  shadow-lg rounded-2xl p-8 text-center h-fit">
 
                 <div class="flex justify-center mb-6">
                     @if($artist->profile_photo_path)
                         <img src="{{ asset('storage/' . $artist->profile_photo_path) }}"
-                            class="w-56 h-56 rounded-full object-cover border-4 border-gray-500  shadow">
+                            class="w-56 h-56 rounded-full object-cover border-4 border-gray-500 bg-none shadow-md">
 
                     @else
                         <img src="{{ asset('images/placeholder.jpg') }}"
-                            class="w-56 h-56 rounded-full object-cover border-4 border-yellow-200 shadow-lg">
+                            class="w-56 h-56 rounded-full object-cover border-4 border-yellow-200 shadow-lg bg-none">
                     @endif
                 </div>
 
-                <h2 class="text-2xl font-bold text-gray-800">
+                <h2 class="text-2xl font-bold text-slate-800">
                     {{ $artist->name }}
                 </h2>
 
                 {{-- TRADE --}}
-                <div class="mt-4 bg-yellow-200 rounded-xl p-2 font-bold ">
-                    <p class="text-sm">
+                <div class="mt-2  rounded-xl p-2 font-bold ">
+                    <p class="text-sm text-black">
                         Trade - <span class="bg-yellow-100 text-yellow-800 px-4 py-1 rounded-full font-semibold">
                             {{ $artist->trade }}
                         </span>
@@ -34,7 +54,7 @@
 
                 </div>
 
-                <div class="mt-6 text-sm text-gray-600 space-y-2">
+                <div class="mt-2 text-sm text-slate-900 space-y-2">
 
                     <p>
                         <span class="font-semibold text-gray-700">Contact:</span>
@@ -82,17 +102,20 @@
             </div>
 
 
-            {{-- DETAILS SECTION --}}
-            <div class="lg:col-span-2 bg-white shadow-lg rounded-2xl p-10 bg-yellow-100/20">
 
-                <h3 class="text-2xl  font-bold mb-4 border-b pb-2 text-yellow-700">
+            {{-- DETAILS SECTION --}}
+            <div class="lg:col-span-2 shadow-lg rounded-2xl p-10 bg-yellow-50/90 backdrop-blur-xs">
+
+
+                <h3 class="text-2xl  font-bold mb-4 border-b pb-2 text-yellow-900">
                     Details
                 </h3>
 
                 <div class="grid md:grid-cols-2 gap-6">
 
                     {{-- QUALIFICATION --}}
-                    <div class="bg-yellow-50 rounded-xl p-3 shadow-lg">
+                    <div
+                        class="bg-yellow-50/50 rounded-xl p-3 shadow-lg hover:backdrop-blur-xl hover:shadow-yellow-300 hover:shadow-md">
                         <p class="text-yellow-700 text-xs uppercase tracking-wide">
                             Qualification
                         </p>
@@ -104,7 +127,8 @@
 
 
                     {{-- Trade --}}
-                    <div class="bg-yellow-50 rounded-xl p-3 shadow-lg">
+                    <div
+                        class="bg-yellow-50/50 rounded-xl p-3 shadow-lg hover:backdrop-blur-xl hover:shadow-yellow-300 hover:shadow-md">
                         <p class="text-yellow-700 text-xs uppercase tracking-wide">
                             Trade
                         </p>
@@ -116,7 +140,8 @@
 
 
                     {{-- SKILLS --}}
-                    <div class="bg-yellow-50 shadow-lg  rounded-xl p-3">
+                    <div
+                        class="bg-yellow-50/50 shadow-lg  rounded-xl p-3 hover:backdrop-blur-xl hover:shadow-yellow-300 hover:shadow-md">
                         <p class="text-yellow-600 text-xs uppercase tracking-wide ">
                             Skilled in
                         </p>
@@ -136,7 +161,8 @@
 
 
                     {{-- CERTIFICATIONS --}}
-                    <div class=" rounded-xl p-3 bg-yellow-50 shadow-lg">
+                    <div
+                        class=" rounded-xl p-3 bg-yellow-50/50 shadow-lg hover:backdrop-blur-xl hover:shadow-yellow-300 hover:shadow-md">
 
                         <p class="text-yellow-700 text-xs uppercase tracking-wide mb-2">
                             Certifications
@@ -176,7 +202,8 @@
 
 
                     {{-- DISTRICT --}}
-                    <div class=" rounded-xl p-3 bg-yellow-50 shadow-lg">
+                    <div
+                        class=" rounded-xl p-3 bg-yellow-50/50 shadow-lg hover:backdrop-blur-xl hover:shadow-yellow-300 hover:shadow-md">
                         <p class="text-yellow-700 text-xs uppercase tracking-wide">
                             District
                         </p>
@@ -188,7 +215,8 @@
 
 
                     {{-- ADDRESS --}}
-                    <div class="bg-yellow-50 rounded-xl p-3 shadow-lg">
+                    <div
+                        class="bg-yellow-50/50 rounded-xl p-3 shadow-lg hover:backdrop-blur-xl hover:shadow-yellow-300 hover:shadow-md">
                         <span class="text-yellow-700 text-xs uppercase tracking-wide">
                             Address
                         </span>
@@ -222,6 +250,8 @@
 
         </div>
 
+
+        {{-- Back Button --}}
         <div class="w-full flex justify-end  p-4">
             <a href="https://jobs.sanaartisan.com/artisans"
                 class="text-sm font-medium  bg-yellow-200 p-2 rounded-lg hover:text-yellow-800 hover:underline transition">
