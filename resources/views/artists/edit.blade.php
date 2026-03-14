@@ -73,7 +73,8 @@
 
                         <option value="Cooking" {{ $artist->trade == 'Cooking' ? 'selected' : '' }}>Cooking</option>
 
-                        <option value="Digital" {{ $artist->trade == 'Digital' ? 'selected' : '' }}>Digital Skills
+                        <option value="Digital Skills" {{ $artist->trade == 'Digital Skills' ? 'selected' : '' }}>Digital
+                            Skills
                         </option>
 
                     </select>
