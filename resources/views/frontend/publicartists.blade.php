@@ -5,37 +5,38 @@
     <section class="relative bg-cover bg-center md:h-[90vh]" style="background-image:url('/images/artisans-hero.png')">
 
         <!-- overlay -->
-        <div class="absolute inset-0 bg-black/70"></div>
+        <div class="absolute inset-0 bg-black/50"></div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
 
             <!-- HERO TEXT -->
-            <div class="text-center text-white max-w-3xl mx-auto">
+            <div class="text-center text-white max-w-5xl mx-auto">
 
                 <h1 class="text-4xl md:text-5xl font-bold mb-5 leading-tight">
-                    Skilled Artisans Directory
+                    Skilled <span class="text-yellow-400">Resource Persons</span> Directory
                 </h1>
 
-                <p class="text-lg text-gray-200 leading-relaxed">
+                <p class="text-lg text-gray-200 leading-relaxed ">
                     You can hire them. SANA has a pool of skilled resource persons in different
-                    trades including <strong>Tailoring, Embroidery, Beautification, Cooking and Digital Skills</strong>.
+                    trades including <strong class="text-yellow-400">Tailoring, Embroidery, Beautification, Cooking and
+                        Digital Skills</strong>.
                     All artisans are trained and certified from reputable institutes.
                 </p>
 
             </div>
 
             <!-- SEARCH CARD -->
-            <div class="mt-20 bg-white rounded-2xl shadow-2xl p-6 md:p-8 max-w-6xl mx-auto ">
+            <div class="mt-20 bg-white/75 backdrop-blur-xs rounded-2xl shadow-2xl p-6 md:p-8 max-w-6xl mx-auto ">
 
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
 
                     <h2 class="text-xl md:text-2xl font-semibold text-gray-800">
-                        Find Skilled Artisans
+                        Find Skilled Resource Person
                     </h2>
 
                     <a href="/apply"
                         class="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-lg font-semibold transition text-center shadow-sm">
-                        Register as Artisan
+                        Get Registered
                     </a>
 
                 </div>
@@ -47,7 +48,7 @@
 
                         {{-- SEARCH (1/3 WIDTH) --}}
                         <div class="md:col-span-1">
-                            <input type="text" name="search" placeholder="Search artisan by name..."
+                            <input type="text" name="search" placeholder="Search skilled resource person by name.."
                                 value="{{ request('search') }}"
                                 class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-yellow-400 focus:outline-none">
                         </div>
@@ -133,7 +134,7 @@
             <div class="mt-2 p-5 w-full flex text-sm text-gray-600" id="searchResults">
                 Search results:
                 <span class="text-black font-semibold ml-1">{{ $artists->total() }}</span>
-                <span class="ml-1"> artisans found</span>
+                <span class="ml-1"> skilled resource persons found</span>
             </div>
         @endif
 

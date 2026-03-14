@@ -57,7 +57,7 @@
                     </a>
 
                     <a href="https://jobs.sanaartisan.com/artisans" class="  text-gray-800 rounded hover:bg-gray-100">
-                        Artisans
+                        Skilled Resource
                     </a>
 
                     <a href="https://sanaartisan.com/products/" class="text-gray-700 hover:text-black">
@@ -119,7 +119,7 @@
 
                 <a href="https://jobs.sanaartisan.com/artisans"
                     class="block font-semibold text-slate-700 hover:text-yellow-300 border p-2  rounded-md shadow-sm">
-                    Artisans
+                    Skilled Resource
                 </a>
 
                 <a href="https://sanaartisan.com/products/"
