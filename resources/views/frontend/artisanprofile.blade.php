@@ -12,7 +12,7 @@
                 <div class="flex justify-center mb-6">
                     @if($artist->profile_photo_path)
                         <img src="{{ asset('storage/' . $artist->profile_photo_path) }}"
-                            class="w-56 h-56 rounded-full object-cover border-4 border-gray-500 bg-red-400 shadow">
+                            class="w-56 h-56 rounded-full object-cover border-4 border-gray-500  shadow">
 
                     @else
                         <img src="{{ asset('images/placeholder.jpg') }}"
@@ -85,49 +85,49 @@
             {{-- DETAILS SECTION --}}
             <div class="lg:col-span-2 bg-white shadow-lg rounded-2xl p-10 bg-yellow-100/20">
 
-                <h3 class="text-2xl  font-bold mb-8 border-b pb-4  ">
+                <h3 class="text-2xl  font-bold mb-4 border-b pb-2 text-yellow-700">
                     Details
                 </h3>
 
                 <div class="grid md:grid-cols-2 gap-6">
 
                     {{-- QUALIFICATION --}}
-                    <div class="bg-gray-50 rounded-xl p-5">
-                        <p class="text-gray-400 text-xs uppercase tracking-wide">
+                    <div class="bg-yellow-50 rounded-xl p-3 shadow-lg">
+                        <p class="text-yellow-700 text-xs uppercase tracking-wide">
                             Qualification
                         </p>
 
-                        <p class="text-gray-800 text-md font-semibold mt-1">
+                        <p class="text-gray-800 text-sm  p-2">
                             {{ $artist->qualification }}
                         </p>
                     </div>
 
 
-                    {{-- CURRENT STATUS --}}
-                    <div class="bg-gray-50 rounded-xl p-5">
-                        <p class="text-gray-400 text-xs uppercase tracking-wide">
+                    {{-- Trade --}}
+                    <div class="bg-yellow-50 rounded-xl p-3 shadow-lg">
+                        <p class="text-yellow-700 text-xs uppercase tracking-wide">
                             Trade
                         </p>
 
-                        <p class="text-gray-800 text-md font-semibold mt-1 capitalize">
+                        <p class="text-gray-800 text-sm p-2 capitalize">
                             {{ str_replace('_', ' ', $artist->trade) }}
                         </p>
                     </div>
 
 
                     {{-- SKILLS --}}
-                    <div class="bg-gray-50 rounded-xl p-5">
-                        <p class="text-gray-400 text-xs uppercase tracking-wide mb-2">
-                            Skills
+                    <div class="bg-yellow-50 shadow-lg  rounded-xl p-3">
+                        <p class="text-yellow-600 text-xs uppercase tracking-wide ">
+                            Skilled in
                         </p>
 
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex flex-col gap-2 mt-2">
 
                             @foreach(explode(',', $artist->specialization) as $skill)
 
-                                <span class="bg-yellow-100 text-indigo-700 text-xs px-3 py-1 rounded-full">
+                                <p class="  text-xs px-2 py-0 rounded-full m-0 ">
                                     {{ trim($skill) }}
-                                </span>
+                                </p>
 
                             @endforeach
 
@@ -136,9 +136,9 @@
 
 
                     {{-- CERTIFICATIONS --}}
-                    <div class="bg-gray-50 rounded-xl p-3">
+                    <div class=" rounded-xl p-3 bg-yellow-50 shadow-lg">
 
-                        <p class="text-gray-400 text-xs uppercase tracking-wide mb-2">
+                        <p class="text-yellow-700 text-xs uppercase tracking-wide mb-2">
                             Certifications
                         </p>
 
@@ -148,9 +148,9 @@
 
                                 @foreach($artist->certifications as $cert)
 
-                                    <div class="flex justify-between  px-3 py-2 rounded-lg text-sm">
+                                    <div class="flex justify-between p-2 rounded-lg ">
 
-                                        <span class="font-semibold text-yellow-700">
+                                        <span class="text-sm ">
                                             {{ $cert->certification_name }}
                                         </span>
 
@@ -176,24 +176,24 @@
 
 
                     {{-- DISTRICT --}}
-                    <div class="bg-gray-50 rounded-xl p-3">
-                        <p class="text-gray-400 text-xs uppercase tracking-wide">
+                    <div class=" rounded-xl p-3 bg-yellow-50 shadow-lg">
+                        <p class="text-yellow-700 text-xs uppercase tracking-wide">
                             District
                         </p>
 
-                        <p class="text-gray-800 text-md font-semibold mt-1">
+                        <p class=" text-sm p-2">
                             {{ $artist->district }}
                         </p>
                     </div>
 
 
                     {{-- ADDRESS --}}
-                    <div class="bg-gray-50 rounded-xl p-3">
-                        <span class="text-gray-400 text-xs uppercase tracking-wide">
+                    <div class="bg-yellow-50 rounded-xl p-3 shadow-lg">
+                        <span class="text-yellow-700 text-xs uppercase tracking-wide">
                             Address
                         </span>
 
-                        <p class="text-gray-800 text-md font-semibold mt-1">
+                        <p class="text-gray-800 text-sm  mt-1">
                             {{ $artist->address }}
                         </p>
                     </div>

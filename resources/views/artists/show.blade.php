@@ -34,12 +34,6 @@
             <!-- DETAILS CARD -->
             <div class="md:col-span-2 bg-white shadow rounded-xl p-6 space-y-5">
 
-                {{-- <div>
-                    <p class="font-semibold">Current Status</p>
-                    <p class="text-gray-600">
-                        {{ str_replace('_', ' ', $artist->current_status) }}
-                    </p>
-                </div> --}}
 
 
                 <!-- SKILLS -->
@@ -64,14 +58,9 @@
 
 
                 <div class="flex flex-col gap-2">
-
+                    <p class="font-semibold">Certifications</p>
                     @foreach($artist->certifications as $cert)
-                        <p class="font-semibold">Certifications</p>
 
-                        {{-- <p class="text-xs px-3 py-1 rounded-full flex w-full gap-3 items-center">
-                            <span>Certificate</span> -
-                            <span>Year</span>
-                        </p> --}}
                         <p class="text-sm px-3 py-1 rounded-full flex w-full gap-2">
                             <span>{{ $cert->certification_name }}</span> -
                             <span>{{ $cert->certification_year }}</span>
