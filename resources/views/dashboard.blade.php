@@ -5,7 +5,7 @@
         <h1 class="text-3xl font-bold">Dashboard</h1>
 
         <!-- Stats Cards -->
-        <div class="grid grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
             <div class="bg-white p-6 rounded shadow">
                 <p class="text-gray-500">Total Artists</p>
@@ -28,16 +28,49 @@
             </div>
 
         </div>
+        <h3 class="text-lg p-2 font-semibold m-0 ">
+            Trades
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
+            <div class="bg-orange-100 p-6 rounded shadow">
+                <p class="text-gray-600">Cooking</p>
+                <h2 class="text-3xl font-bold mt-2">{{ $cooking }}</h2>
+            </div>
+
+            <div class="bg-blue-100 p-6 rounded shadow">
+                <p class="text-gray-600">Tailoring</p>
+                <h2 class="text-3xl font-bold mt-2">{{ $tailoring }}</h2>
+            </div>
+
+            <div class="bg-purple-100 p-6 rounded shadow">
+                <p class="text-gray-600">Beautification</p>
+                <h2 class="text-3xl font-bold mt-2">{{ $beautification }}</h2>
+            </div>
+
+            <div class="bg-indigo-100 p-6 rounded shadow">
+                <p class="text-gray-600">Digital Skills</p>
+                <h2 class="text-3xl font-bold mt-2">{{ $digital_skills }}</h2>
+            </div>
+
+        </div>
         <!-- Current Status Breakdown -->
-        <div class="grid grid-cols-3 gap-6">
+        <h3 class="text-lg p-2 font-semibold m-0 ">
+            Current Status
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
-            <div class="bg-white p-6 rounded shadow">
+            <div class="bg-yellow-100 p-6 rounded shadow">
+                <p class="text-gray-500">Students</p>
+                <h2 class="text-2xl font-bold mt-2">{{ $student }}</h2>
+            </div>
+
+            <div class="bg-orange-100 p-6 rounded shadow">
                 <p class="text-gray-500">Own Business</p>
                 <h2 class="text-2xl font-bold mt-2">{{ $own_business }}</h2>
             </div>
 
-            <div class="bg-white p-6 rounded shadow">
+            <div class="bg-indigo-100 p-6 rounded shadow">
                 <p class="text-gray-500">Employee</p>
                 <h2 class="text-2xl font-bold mt-2">{{ $employee }}</h2>
             </div>

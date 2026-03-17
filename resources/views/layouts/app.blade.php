@@ -2,11 +2,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'SANA') }}</title>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -31,9 +32,9 @@
         <!-- SIDEBAR -->
         @auth
             <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-40
-                                w-64 bg-gray-900 text-white p-6 space-y-6
-                                transform -translate-x-full lg:translate-x-0
-                                transition duration-200 ease-in-out">
+                                        w-64 bg-gray-900 text-white p-6 space-y-6
+                                        transform -translate-x-full lg:translate-x-0
+                                        transition duration-200 ease-in-out">
 
                 <h2 class="text-xl font-bold border-b border-gray-700 pb-4">
                     Admin Panel

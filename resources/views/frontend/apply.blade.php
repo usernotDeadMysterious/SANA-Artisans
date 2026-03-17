@@ -107,7 +107,7 @@
                                 <option value="Tailoring">Tailoring</option>
                                 <option value="Beautician">Beautician</option>
                                 <option value="Cooking">Cooking</option>
-                                <option value="Digital">Digital Skills</option>
+                                <option value="Digital Skills">Digital Skills</option>
 
                             </select>
                         </div>
@@ -464,9 +464,9 @@
                 tag.className = "inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 text-sm px-3 py-1 rounded-full"
 
                 tag.innerHTML = `
-                        ${skill}
-                        <button type="button" onclick="removeSkill('${skill}')" class="font-bold">✕</button>
-                        `
+                            ${skill}
+                            <button type="button" onclick="removeSkill('${skill}')" class="font-bold">✕</button>
+                            `
 
                 container.appendChild(tag)
 
@@ -519,23 +519,23 @@
 
             row.innerHTML = `
 
-                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded">
-                        ${cert}
-                        </span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded">
+                            ${cert}
+                            </span>
 
-                        <span class="text-sm">Year</span>
+                            <span class="text-sm">Year</span>
 
-                        <select name="certification_year[]" class="border w-20 rounded px-2 py-1">
-                        ${getYearOptions()}
-                        </select>
+                            <select name="certification_year[]" class="border w-20 rounded px-2 py-1">
+                            ${getYearOptions()}
+                            </select>
 
-                        <input type="hidden" name="certification_name[]" value="${cert}">
+                            <input type="hidden" name="certification_name[]" value="${cert}">
 
-                        <button type="button" onclick="this.parentElement.remove()" class="text-red-600 font-bold">
-                        ✕
-                        </button>
+                            <button type="button" onclick="this.parentElement.remove()" class="text-red-600 font-bold">
+                            ✕
+                            </button>
 
-                        `
+                            `
 
             container.appendChild(row)
 
